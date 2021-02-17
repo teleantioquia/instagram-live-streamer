@@ -78,7 +78,7 @@ jobs:
         CI: false
         CSC_IDENTITY_AUTO_DISCOVERY: false
         # This token is provided by Actions, you do not need to create your own token
-        GH_TOKEN: ${{ secrets.GH_TOKEN  }}
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN  }}
         DEBUG: electron-builder
 
   build_windows:
@@ -114,5 +114,5 @@ jobs:
         run: npm run dist:win
         env:
           CI: false
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEBUG: electron-builder
