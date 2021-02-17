@@ -79,7 +79,7 @@ jobs:
         CSC_IDENTITY_AUTO_DISCOVERY: false
         # This token is provided by Actions, you do not need to create your own token
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN  }}
-        DEBUG: electron-builder
+        # DEBUG: electron-builder
 
   build_windows:
     name: Build Windows variant
@@ -115,4 +115,4 @@ jobs:
         env:
           CI: false
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          DEBUG: electron-builder
+          # DEBUG: electron-builder
