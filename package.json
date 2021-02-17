@@ -36,7 +36,11 @@
       ],
       "icon": "./build/icon.icns",
       "publish": [
-        "github"
+        {
+          "provider": "github",
+          "owner": "teleantioquia",
+          "repo": "instagram-live-streamer"
+        }
       ]
     },
     "linux": {
@@ -46,14 +50,22 @@
       ],
       "icon": "./build/icon.icns",
       "publish": [
-        "github"
+        {
+          "provider": "github",
+          "owner": "teleantioquia",
+          "repo": "instagram-live-streamer"
+        }
       ]
     },
     "win": {
       "target": "NSIS",
       "icon": "./build/icon_256.png",
       "publish": [
-        "github"
+        {
+          "provider": "github",
+          "owner": "teleantioquia",
+          "repo": "instagram-live-streamer"
+        }
       ]
     },
     "files": [
