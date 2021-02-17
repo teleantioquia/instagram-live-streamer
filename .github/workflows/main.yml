@@ -6,40 +6,40 @@ on:
       - master
 
 jobs:
-  build_linux:
-    name: Build Linux Variant
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
+  # build_linux:
+  #   name: Build Linux Variant
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v2
 
-      - name: Setup node
-        uses: actions/setup-node@v1
-        with:
-          node-version: '12.10.0'
+  #     - name: Setup node
+  #       uses: actions/setup-node@v1
+  #       with:
+  #         node-version: '12.10.0'
 
-      - name: "Cache npm deps"
-        uses: actions/cache@v2
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
+  #     - name: "Cache npm deps"
+  #       uses: actions/cache@v2
+  #       with:
+  #         path: ~/.npm
+  #         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+  #         restore-keys: |
+  #           ${{ runner.os }}-node-
 
-      - name: Install dependencies
-        run: npm install
+  #     - name: Install dependencies
+  #       run: npm ci
 
-      - name: Build production electron app
-        run: npm run build
-        env:
-          CI: false
-          REACT_APP_SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
-          REACT_APP_VERSION: $npm_package_version
-          REACT_APP_API_SERVICE_URL: ${{ secrets.API_SERVICE_URL }}
-      - name: Build Linux Variant (deb)
-        run: npm run dist:linux
-        env:
-          CI: false
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+  #     - name: Build production electron app
+  #       run: npm run build
+  #       env:
+  #         CI: false
+  #         REACT_APP_SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
+  #         REACT_APP_VERSION: $npm_package_version
+  #         REACT_APP_API_SERVICE_URL: ${{ secrets.API_SERVICE_URL }}
+  #     - name: Build Linux Variant (deb)
+  #       run: npm run dist:linux
+  #       env:
+  #         CI: false
+  #         GH_TOKEN: ${{ secrets.GH_TOKEN }}
 
   build_mac_os:
     name: Build macOS variant
@@ -61,15 +61,17 @@ jobs:
           ${{ runner.os }}-node-
 
     - name: Install dependencies
-      run: npm install
+      run: npm ci
 
     - name: Build production electron app
       run: npm run build
       env:
+        # The purpose of the CI environment variable
+        # https://stackoverflow.com/questions/60006265/whats-the-purpose-of-the-environment-variable-ci-set-to-true-within-a-github-wo.
         CI: false
-        REACT_APP_SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
         REACT_APP_VERSION: $npm_package_version
-        REACT_APP_API_SERVICE_URL: ${{ secrets.API_SERVICE_URL }}
+        # REACT_APP_SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
+        # REACT_APP_API_SERVICE_URL: ${{ secrets.API_SERVICE_URL }}
     - name: Build macOS variant
       run: npm run dist:mac
       env:
@@ -97,15 +99,15 @@ jobs:
             ${{ runner.os }}-node-
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
       - name: Build production electron app
         run: npm run build
         env:
           CI: false
-          REACT_APP_SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
           REACT_APP_VERSION: $npm_package_version
-          REACT_APP_API_SERVICE_URL: ${{ secrets.API_SERVICE_URL }}
+          # REACT_APP_SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
+          # REACT_APP_API_SERVICE_URL: ${{ secrets.API_SERVICE_URL }}
       - name: Build Windows Variant
         run: npm run dist:win
         env:

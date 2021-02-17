@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { configureScope, captureMessage } from "@sentry/browser";
+// import { configureScope, captureMessage } from "@sentry/browser";
 import styles from "./styles.module.scss";
 import StreamonLogo from "../../images/streamon-logo.svg";
 import LoadingBar from "../../components/LoadingBar";
@@ -49,18 +49,21 @@ function Login({ dispatch }) {
     try {
       const profile = await client.account.currentUser();
       const accountDetails = await client.user.info(profile.pk);
+      // NOTE: Commented this to prevent user info is saved in any third party server.
       // save user info in the server
-      axios
-        .post(
-          `${process.env.REACT_APP_API_SERVICE_URL}/api/user`,
-          accountDetails
-        )
-        .catch((error) => {
-          console.log(error);
-        });
-      configureScope((scope) => {
-        scope.setUser({ id: profile.username });
-      });
+      // axios
+      //   .post(
+      //     `${process.env.REACT_APP_API_SERVICE_URL}/api/user`,
+      //     accountDetails
+      //   )
+      //   .catch((error) => {
+      //     console.log(error);
+      //   });
+
+      // configureScope((scope) => {
+      //   scope.setUser({ id: profile.username });
+      // });
+
       dispatch(setUserProfile(profile));
       dispatch(setSignedIn(true));
       setLoading(false);

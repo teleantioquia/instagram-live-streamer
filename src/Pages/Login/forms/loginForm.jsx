@@ -6,6 +6,8 @@ import open from "open";
 const appVersion = window.require("electron").remote.app.getVersion();
 
 export default function LoginForm({ handleLogin, credError }) {
+  // handleLogin is the signIn() function in the ../index.jsx file.
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
