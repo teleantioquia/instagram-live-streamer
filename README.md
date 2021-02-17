@@ -89,8 +89,26 @@ npm install
 npm run electron-dev
 ```
 
+## Creating a release
+To increase the version number use the npm version tool, this will create the git tag and update the package.json and package-lock.json files.
+
+```bash
+npm version patch
+```
+
+You can use major | minor | patch to change the respective number in the version (we are using semantic versioning)
+
+To allow **electron-builder** to automatically upload the executable files to a release you first need to manually create a draft release. 
+
+MUST NOT PUBLISH the release MUST SAVE as DRAFT to allow electron-build to upload the executable files.
+
+The draft release should be pointed to a tag version.
+
+When the github actions finish you will see the executable files uploaded to the draft, now you can set a name to the release and publish it.
+
 ## TODO
 
+- [ ] Automatically create the draft release when pushed with a v* tag using github actions.
 - [ ] Persist user session
 - [ ] Live preview of the stream
 - [ ] Ability to stream with out third party softwares
