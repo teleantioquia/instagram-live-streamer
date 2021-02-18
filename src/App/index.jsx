@@ -15,15 +15,15 @@ export default function App() {
   ] = useUpdate();
   const [showUpdateModal, setShowUpdateModal] = useState(false);
 
-  useEffect(() => {
-    checkForUpdates();
-  }, []);
+  // useEffect(() => {
+  //   checkForUpdates();
+  // }, []);
 
-  useEffect(() => {
-    if (isUpdateAvailable) {
-      setShowUpdateModal(true);
-    }
-  }, [isUpdateAvailable]);
+  // useEffect(() => {
+  //   if (isUpdateAvailable) {
+  //     setShowUpdateModal(true);
+  //   }
+  // }, [isUpdateAvailable]);
 
   return (
     <Router>
